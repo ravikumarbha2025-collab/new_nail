@@ -26,7 +26,7 @@ const options = {
       schemas: {
         Booking: {
           type: 'object',
-          required: ['firstName', 'lastName', 'email', 'phone', 'service', 'staff', 'appointmentDate'],
+          required: [],
           properties: {
             _id: {
               type: 'string',
@@ -89,7 +89,7 @@ const options = {
         },
         BookingRequest: {
           type: 'object',
-          required: ['firstName', 'lastName', 'email', 'phone', 'service', 'staff', 'appointmentDate'],
+          required: [],
           properties: {
             firstName: {
               type: 'string',

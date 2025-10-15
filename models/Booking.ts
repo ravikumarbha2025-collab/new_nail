@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose'
 import { Booking } from '@/types/booking'
 
-export interface BookingDocument extends Booking, Document {}
+export interface BookingDocument extends Omit<Booking, '_id'>, Document {}
 
 const BookingSchema: Schema = new Schema({
   name: {

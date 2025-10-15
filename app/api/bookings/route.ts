@@ -3,6 +3,7 @@ import connectDB from '@/lib/mongodb'
 import Booking from '@/models/Booking'
 import { sendBookingEmail } from '@/lib/email'
 import { bookingSchema } from '@/lib/validations'
+import { corsHeaders, handleCORS } from '@/lib/cors'
 
 /**
  * @swagger
@@ -98,6 +99,10 @@ import { bookingSchema } from '@/lib/validations'
  */
 
 export async function POST(request: NextRequest) {
+  // Handle CORS preflight
+  const corsResponse = handleCORS(request)
+  if (corsResponse) return corsResponse
+
   try {
     // Connect to database
     await connectDB()
@@ -134,7 +139,10 @@ export async function POST(request: NextRequest) {
           appointmentDate: booking.appointmentDate,
         },
       },
-      { status: 201 }
+      { 
+        status: 201,
+        headers: corsHeaders(request)
+      }
     )
   } catch (error) {
     console.error('Booking creation failed:', error)
@@ -146,7 +154,10 @@ export async function POST(request: NextRequest) {
           message: 'Validation failed',
           errors: error,
         },
-        { status: 400 }
+        { 
+          status: 400,
+          headers: corsHeaders(request)
+        }
       )
     }
 
@@ -155,12 +166,19 @@ export async function POST(request: NextRequest) {
         success: false,
         message: 'Internal server error',
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: corsHeaders(request)
+      }
     )
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Handle CORS preflight
+  const corsResponse = handleCORS(request)
+  if (corsResponse) return corsResponse
+
   try {
     // Connect to database
     await connectDB()
@@ -173,7 +191,10 @@ export async function GET() {
         success: true,
         data: bookings,
       },
-      { status: 200 }
+      { 
+        status: 200,
+        headers: corsHeaders(request)
+      }
     )
   } catch (error) {
     console.error('Failed to fetch bookings:', error)
@@ -183,7 +204,10 @@ export async function GET() {
         success: false,
         message: 'Failed to fetch bookings',
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: corsHeaders(request)
+      }
     )
   }
 }

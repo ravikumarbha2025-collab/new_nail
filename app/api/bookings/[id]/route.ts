@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/lib/mongodb'
 import Booking from '@/models/Booking'
+import { corsHeaders, handleCORS } from '@/lib/cors'
 
 /**
  * @swagger
@@ -78,6 +79,10 @@ export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  // Handle CORS preflight
+  const corsResponse = handleCORS(request)
+  if (corsResponse) return corsResponse
+
   try {
     await connectDB()
 
@@ -89,7 +94,10 @@ export async function GET(
           success: false,
           message: 'Booking not found',
         },
-        { status: 404 }
+        { 
+          status: 404,
+          headers: corsHeaders(request)
+        }
       )
     }
 
@@ -98,7 +106,10 @@ export async function GET(
         success: true,
         data: booking,
       },
-      { status: 200 }
+      { 
+        status: 200,
+        headers: corsHeaders(request)
+      }
     )
   } catch (error) {
     console.error('Failed to fetch booking:', error)
@@ -108,7 +119,10 @@ export async function GET(
         success: false,
         message: 'Failed to fetch booking',
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: corsHeaders(request)
+      }
     )
   }
 }
@@ -117,6 +131,10 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  // Handle CORS preflight
+  const corsResponse = handleCORS(request)
+  if (corsResponse) return corsResponse
+
   try {
     await connectDB()
 
@@ -128,7 +146,10 @@ export async function DELETE(
           success: false,
           message: 'Booking not found',
         },
-        { status: 404 }
+        { 
+          status: 404,
+          headers: corsHeaders(request)
+        }
       )
     }
 
@@ -137,7 +158,10 @@ export async function DELETE(
         success: true,
         message: 'Booking deleted successfully',
       },
-      { status: 200 }
+      { 
+        status: 200,
+        headers: corsHeaders(request)
+      }
     )
   } catch (error) {
     console.error('Failed to delete booking:', error)
@@ -147,7 +171,10 @@ export async function DELETE(
         success: false,
         message: 'Failed to delete booking',
       },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: corsHeaders(request)
+      }
     )
   }
 }

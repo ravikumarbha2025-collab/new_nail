@@ -1,22 +1,22 @@
 export interface Booking {
   _id?: string | any
-  name: string
+  firstName: string
+  lastName: string
   email: string
   phone: string
-  date: string
-  time: string
   service: string
-  message?: string
+  staff: string
+  appointmentDate: string
   createdAt?: Date
   updatedAt?: Date
 }
 
 export interface BookingFormData {
-  name: string
+  firstName: string
+  lastName: string
   email: string
   phone: string
-  date: string
-  time: string
   service: string
-  message?: string
+  staff: string
+  appointmentDate: string
 }

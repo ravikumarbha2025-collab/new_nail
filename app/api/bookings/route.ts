@@ -18,13 +18,13 @@ import { bookingSchema } from '@/lib/validations'
  *           schema:
  *             $ref: '#/components/schemas/BookingRequest'
  *           example:
- *             name: "John Doe"
+ *             firstName: "John"
+ *             lastName: "Doe"
  *             email: "john.doe@example.com"
  *             phone: "1234567890"
- *             date: "2024-01-15"
- *             time: "10:00 AM"
  *             service: "Haircut"
- *             message: "Looking forward to the appointment!"
+ *             staff: "Sarah Johnson"
+ *             appointmentDate: "2024-01-15"
  *     responses:
  *       201:
  *         description: Booking created successfully
@@ -41,21 +41,24 @@ import { bookingSchema } from '@/lib/validations'
  *                         id:
  *                           type: string
  *                           example: "507f1f77bcf86cd799439011"
- *                         name:
+ *                         firstName:
  *                           type: string
- *                           example: "John Doe"
+ *                           example: "John"
+ *                         lastName:
+ *                           type: string
+ *                           example: "Doe"
  *                         email:
  *                           type: string
  *                           example: "john.doe@example.com"
  *                         service:
  *                           type: string
  *                           example: "Haircut"
- *                         date:
+ *                         staff:
+ *                           type: string
+ *                           example: "Sarah Johnson"
+ *                         appointmentDate:
  *                           type: string
  *                           example: "2024-01-15"
- *                         time:
- *                           type: string
- *                           example: "10:00 AM"
  *       400:
  *         description: Validation error
  *         content:
@@ -123,11 +126,12 @@ export async function POST(request: NextRequest) {
         message: 'Booking created successfully',
         data: {
           id: booking._id,
-          name: booking.name,
+          firstName: booking.firstName,
+          lastName: booking.lastName,
           email: booking.email,
           service: booking.service,
-          date: booking.date,
-          time: booking.time,
+          staff: booking.staff,
+          appointmentDate: booking.appointmentDate,
         },
       },
       { status: 201 }

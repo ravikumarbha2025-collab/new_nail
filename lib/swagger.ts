@@ -26,17 +26,24 @@ const options = {
       schemas: {
         Booking: {
           type: 'object',
-          required: ['name', 'email', 'phone', 'date', 'time', 'service'],
+          required: ['firstName', 'lastName', 'email', 'phone', 'service', 'staff', 'appointmentDate'],
           properties: {
             _id: {
               type: 'string',
               description: 'Unique identifier for the booking',
               example: '507f1f77bcf86cd799439011',
             },
-            name: {
+            firstName: {
               type: 'string',
-              description: 'Customer name',
-              example: 'John Doe',
+              description: 'Customer first name',
+              example: 'John',
+              minLength: 2,
+              maxLength: 50,
+            },
+            lastName: {
+              type: 'string',
+              description: 'Customer last name',
+              example: 'Doe',
               minLength: 2,
               maxLength: 50,
             },
@@ -53,25 +60,20 @@ const options = {
               minLength: 10,
               maxLength: 15,
             },
-            date: {
-              type: 'string',
-              description: 'Booking date',
-              example: '2024-01-15',
-            },
-            time: {
-              type: 'string',
-              description: 'Booking time',
-              example: '10:00 AM',
-            },
             service: {
               type: 'string',
               description: 'Service requested',
               example: 'Haircut',
             },
-            message: {
+            staff: {
               type: 'string',
-              description: 'Optional message from customer',
-              example: 'Looking forward to the appointment!',
+              description: 'Selected staff member',
+              example: 'Sarah Johnson',
+            },
+            appointmentDate: {
+              type: 'string',
+              description: 'Appointment date',
+              example: '2024-01-15',
             },
             createdAt: {
               type: 'string',
@@ -87,12 +89,17 @@ const options = {
         },
         BookingRequest: {
           type: 'object',
-          required: ['name', 'email', 'phone', 'date', 'time', 'service'],
+          required: ['firstName', 'lastName', 'email', 'phone', 'service', 'staff', 'appointmentDate'],
           properties: {
-            name: {
+            firstName: {
               type: 'string',
-              description: 'Customer name',
-              example: 'John Doe',
+              description: 'Customer first name',
+              example: 'John',
+            },
+            lastName: {
+              type: 'string',
+              description: 'Customer last name',
+              example: 'Doe',
             },
             email: {
               type: 'string',
@@ -105,25 +112,20 @@ const options = {
               description: 'Customer phone number',
               example: '1234567890',
             },
-            date: {
-              type: 'string',
-              description: 'Booking date',
-              example: '2024-01-15',
-            },
-            time: {
-              type: 'string',
-              description: 'Booking time',
-              example: '10:00 AM',
-            },
             service: {
               type: 'string',
               description: 'Service requested',
               example: 'Haircut',
             },
-            message: {
+            staff: {
               type: 'string',
-              description: 'Optional message from customer',
-              example: 'Looking forward to the appointment!',
+              description: 'Selected staff member',
+              example: 'Sarah Johnson',
+            },
+            appointmentDate: {
+              type: 'string',
+              description: 'Appointment date',
+              example: '2024-01-15',
             },
           },
         },

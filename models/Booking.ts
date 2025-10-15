@@ -4,9 +4,14 @@ import { Booking } from '@/types/booking'
 export interface BookingDocument extends Omit<Booking, '_id'>, Document {}
 
 const BookingSchema: Schema = new Schema({
-  name: {
+  firstName: {
     type: String,
-    required: [true, 'Name is required'],
+    required: [true, 'First name is required'],
+    trim: true,
+  },
+  lastName: {
+    type: String,
+    required: [true, 'Last name is required'],
     trim: true,
   },
   email: {
@@ -20,22 +25,19 @@ const BookingSchema: Schema = new Schema({
     required: [true, 'Phone is required'],
     trim: true,
   },
-  date: {
-    type: String,
-    required: [true, 'Date is required'],
-  },
-  time: {
-    type: String,
-    required: [true, 'Time is required'],
-  },
   service: {
     type: String,
     required: [true, 'Service is required'],
     trim: true,
   },
-  message: {
+  staff: {
     type: String,
+    required: [true, 'Staff is required'],
     trim: true,
+  },
+  appointmentDate: {
+    type: String,
+    required: [true, 'Appointment date is required'],
   },
 }, {
   timestamps: true,

@@ -11,17 +11,17 @@ import { BookingFormData } from '@/types/booking'
 // })
 
 export async function sendBookingEmail(bookingData: BookingFormData) {
-  const { name, email, phone, date, time, service, message } = bookingData
+  const { firstName, lastName, email, phone, service, staff, appointmentDate } = bookingData
 
   // Email functionality temporarily commented out
   console.log('📧 Email would be sent with booking data:', {
-    name,
+    firstName,
+    lastName,
     email,
     phone,
-    date,
-    time,
     service,
-    message
+    staff,
+    appointmentDate
   })
 
   // Simulate email sending success

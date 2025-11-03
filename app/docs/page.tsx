@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 import SwaggerUI from 'swagger-ui-react'
 import 'swagger-ui-react/swagger-ui.css'
 
-export default function SwaggerPage() {
+export default function DocsPage() {
   const [spec, setSpec] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/docs')
+    fetch('/api/docs?format=json')
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Failed to load spec: ${res.status} ${res.statusText}`)
@@ -56,7 +56,7 @@ export default function SwaggerPage() {
             onClick={() => {
               setLoading(true)
               setError(null)
-              fetch('/api/docs')
+              fetch('/api/docs?format=json')
                 .then((res) => res.json())
                 .then((data) => {
                   if (data && data.openapi) {
@@ -116,3 +116,4 @@ export default function SwaggerPage() {
     </div>
   )
 }
+

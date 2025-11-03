@@ -26,7 +26,7 @@ export function middleware(request: NextRequest) {
       'http://localhost:3001',
       'http://127.0.0.1:3000',
       'http://127.0.0.1:3001',
-      'https://new-nail-h4wq.vercel.app',
+      'https://new-nail.vercel.app',
       'https://vercel.app'
     ]
     

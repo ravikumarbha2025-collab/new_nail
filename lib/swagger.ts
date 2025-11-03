@@ -15,7 +15,7 @@ const definition = {
   servers: [
     {
       url: process.env.NODE_ENV === 'production' 
-        ? 'https://new-nail-h4wq.vercel.app' 
+        ? 'https://new-nail.vercel.app' 
         : 'http://localhost:3000',
       description: process.env.NODE_ENV === 'production' 
         ? 'Production server' 

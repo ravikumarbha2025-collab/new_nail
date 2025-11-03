@@ -16,6 +16,7 @@
     "nodemailer": "^6.9.7",
     "react": "^18",
     "react-dom": "^18",
+    "resend": "^6.4.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-react": "^5.10.5",
     "zod": "^3.22.4"

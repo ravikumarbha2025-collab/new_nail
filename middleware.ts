@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
+  // Handle /api/docs for browser requests - rewrite to /docs page
+  if (request.nextUrl.pathname === '/api/docs') {
+    const format = request.nextUrl.searchParams.get('format')
+    const acceptHeader = request.headers.get('accept') || ''
+    const isJsonRequest = format === 'json' || acceptHeader.includes('application/json')
+    
+    // If it's not a JSON request (i.e., browser visit), rewrite to /docs page
+    if (!isJsonRequest) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/docs'
+      return NextResponse.rewrite(url)
+    }
+    // If it's JSON, let it pass through to the route handler
+  }
+
   // Handle CORS for all API routes
   if (request.nextUrl.pathname.startsWith('/api/')) {
     const origin = request.headers.get('origin')
@@ -52,5 +67,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/api/:path*',
+  matcher: ['/api/:path*', '/docs'],
 }

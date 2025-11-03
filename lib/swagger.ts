@@ -14,9 +14,8 @@ const definition = {
   },
   servers: [
     {
-      url: process.env.VERCEL_URL 
-        ? `https://${process.env.VERCEL_URL}` 
-        : process.env.NODE_ENV === 'production'
+      // Always use the main production domain for Swagger, not deployment-specific URLs
+      url: process.env.NODE_ENV === 'production'
         ? 'https://new-nail.vercel.app'
         : 'http://localhost:3000',
       description: process.env.NODE_ENV === 'production'

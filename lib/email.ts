@@ -48,14 +48,14 @@ export async function sendBookingEmail(bookingData: BookingFormData) {
               
               ${firstName ? `<p style="color: #555; margin: 8px 0; font-size: 15px;"><strong style="color: #333;">Name:</strong> ${customerName}</p>` : ''}
               ${email ? `<p style="color: #555; margin: 8px 0; font-size: 15px;"><strong style="color: #333;">Email:</strong> ${email}</p>` : ''}
-              ${phone ? `<p style="color: #555; margin: 8px 0; font-size: 15px;"><strong style="color: #333;">Phone:</strong> ${phone}</p>` : ''}
+              ${phone ? `<p style="color: #555; margin: 8px 0; font-size: 15px;"><strong style="color: #333;">Phone:</strong>+1 ${phone}</p>` : ''}
               ${service ? `<p style="color: #555; margin: 8px 0; font-size: 15px;"><strong style="color: #333;">Service:</strong> ${service}</p>` : ''}
               ${staff ? `<p style="color: #555; margin: 8px 0; font-size: 15px;"><strong style="color: #333;">Staff:</strong> ${staff}</p>` : ''}
               ${appointmentDate ? `<p style="color: #555; margin: 8px 0; font-size: 15px;"><strong style="color: #333;">Appointment Date:</strong> ${appointmentDate}</p>` : ''}
             </div>
             
             <p style="color: #555; font-size: 15px; line-height: 1.6;">
-              We will contact you${phone ? ` at <strong>${phone}</strong>` : ''} to confirm your appointment. Please keep this email for your records.
+              We will contact you${phone ? ` at <strong>+1 ${phone}</strong>` : ''} to confirm your appointment. Please keep this email for your records.
             </p>
             
             <p style="color: #555; font-size: 15px; line-height: 1.6; margin-top: 25px;">
